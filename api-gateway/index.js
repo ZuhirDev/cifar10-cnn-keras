@@ -4,9 +4,21 @@ import axios from 'axios';
 import cookieParser from 'cookie-parser';
 import FormData from 'form-data';
 import multer from 'multer';
+import rateLimit from 'express-rate-limit';
 
 const app = express();
+    
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000,
+    max: 10,
+    message: {
+        error: 'Demasiadas peticiones. Por favor, espera un minuto.'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
 
+app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
 
@@ -46,5 +58,5 @@ app.post('/predict', upload.single('file'), async (req, res) => {
 });
 
 app.listen(CONFIG.PORT, () => {
-    console.log(`Server running on http://localhost:${CONFIG.PORT}`)
+    console.log(`Server running on http://localhost:${CONFIG.PORT}`);
 });

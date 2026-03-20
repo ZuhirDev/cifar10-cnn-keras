@@ -1,27 +1,17 @@
 {
     "name": "CIFAR-10 GPU Dev Environment",
-    
-    // Le decimos que use nuestra receta existente de Docker Compose
     "dockerComposeFile": "../infrastructure/docker-compose.yml",
-    
-    // Y que VS Code se instale ESPECÍFICAMENTE dentro del servicio de Jupyter
     "service": "ai-service",
-    
-    // La carpeta de trabajo dentro del contenedor
     "workspaceFolder": "/app",
-
-    // Configuración automática de VS Code DENTRO del contenedor
     "customizations": {
         "vscode": {
-            // Extensiones esenciales que se instalarán automáticamente en el contenedor
             "extensions": [
-                "ms-python.python",        // Soporte base de Python (autocompletado, etc.)
-                "ms-toolsai.jupyter",     // Soporte para notebooks .ipynb
-                "ms-python.vscode-pylint", // Corrector de errores de código
+                "ms-python.python",
+                "ms-toolsai.jupyter",
+                "ms-python.vscode-pylint",
                 "ms-azuretools.vscode-docker",
-                "ms-python.vscode-pylance" // Soporte para Docker (opcional, pero útil)
+                "ms-python.vscode-pylance"
             ],
-            // Configuraciones específicas de Python para que no de errores
             "settings": {
                 "python.defaultInterpreterPath": "/usr/bin/python3",
                 "python.analysis.extraPaths": ["/app"],
@@ -31,10 +21,5 @@
         }
     },
     "forwardPorts": [8888, 6006, 8000, 3000],
-
-    // Queremos usar el usuario root para no tener problemas de permisos con la GPU/archivos
-    "remoteUser": "root"
-
-    // (Opcional) Comandos a ejecutar tras la creación
-    // "postCreateCommand": "pip install --upgrade pip"
+    "remoteUser": "vscode"
 }
