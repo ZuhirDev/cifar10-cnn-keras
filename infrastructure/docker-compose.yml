@@ -1,0 +1,39 @@
+services:
+  ai-service:
+    build: 
+      context: ../ai-service/
+      dockerfile: Dockerfile
+    container_name: python-ai-service
+    ports:
+      - "8888:8888"
+      - "6006:6006"
+    volumes:
+      - ../ai-service:/app
+    # ** DESCOMENTAR SOLO EN CASO DE TENER EL ENTORNO DE NVIDIA DISPOIBLE PARA USAR LA GPU ** 
+    # deploy:           
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    networks:
+      - cifar-network
+
+  api-gateway:
+    build:
+      context: ../api-gateway/
+      dockerfile: Dockerfile
+    container_name: node-api-gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ai-service
+    volumes:
+      - ../api-gateway/:/app
+    networks:
+      - cifar-network
+
+networks:
+  cifar-network:
+    driver: bridge
