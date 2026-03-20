@@ -3,10 +3,9 @@ pandas
 scikit-learn
 seaborn
 opencv-python
+tensorflow==2.15.0
 
 Pillow
-
-tensorflow-datasets
 
 fastapi
 uvicorn[standard]
