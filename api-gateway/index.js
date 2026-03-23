@@ -5,9 +5,12 @@ import cookieParser from 'cookie-parser';
 import FormData from 'form-data';
 import multer from 'multer';
 import rateLimit from 'express-rate-limit';
+import cors from 'cors';
 
 const app = express();
-    
+
+app.use(cors());
+
 const limiter = rateLimit({
     windowMs: 1 * 60 * 1000,
     max: 10,

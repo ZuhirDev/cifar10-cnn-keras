@@ -9,6 +9,9 @@
 ![Node.js](https://img.shields.io/badge/Node.js-20-339933?logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.x-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![Shadcn_UI](https://img.shields.io/badge/shadcn%2Fui-000000?logo=shadcnui&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5?logo=kubernetes&logoColor=white)
 ![License](https://img.shields.io/badge/License-ISC-blue)
@@ -75,6 +78,11 @@ La clave del diseño es la separación de responsabilidades para garantizar segu
 - **Inferencia:** Carga el modelo `.keras` y procesa las imágenes mediante TensorFlow.
 - **Validación:** Uso de Pydantic para garantizar que los datos de entrada son correctos.
 
+### frontend (React/Vite + shadcn/ui)
+- **Interfaz Moderna:** Desarrollo de SPA con React y empaquetado ultra-rápido con Vite.
+- **Funcionalidades:** Subida de imágenes tipo Drag & Drop, Galería de ejemplos integrados y monitorización visual del estado de salud del modelo en tiempo real.
+- **Integración:** Servido en producción por el API Gateway, o de manera independiente usando el servidor de desarrollo de Vite.
+
 ---
 
 
@@ -91,7 +99,9 @@ La clave del diseño es la separación de responsabilidades para garantizar segu
 ├── api-gateway/             # Microservicio Proxy (Node.js)
 │   ├── src/                 # Lógica de Express y Middleware
 │   └── .env.example         # Configuración de variables
-├── assets/                  # Imágenes de prueba
+├── frontend/                # Interfaz de Usuario (React + Vite)
+│   ├── src/                 # Componentes, lógica (App.tsx, ImageClassifier)
+│   └── public/              # Assets estáticos y ejemplos
 ├── infrastructure/          # Archivos de Orquestación
     ├── docker-compose.yml   # Despliegue local rápido
     └── k8s/                 # Manifiestos (Deploy, Service, HPA)
@@ -140,6 +150,20 @@ El proyecto incluye manifiestos para un despliegue de grado de producción con l
    ```bash
    curl -X POST http://localhost:3000/predict -F "file=@assets/avion.jpg"
    ```
+### Opción C: Desarrollo Frontend Aislado (React + Vite)
+Para trabajar exclusivamente en la interfaz web de manera local:
+1. Navegar a la carpeta del frontend e instalar dependencias:
+   ```bash
+   cd frontend
+   npm install
+   ```
+2. Compilar la aplicación y lanzar el servidor de previsualización de Vite:
+   ```bash
+   npm run build
+   npm run preview
+   ```
+   > **Nota**: Alternativamente, puedes usar `npm run dev` para activar el Hot Module Replacement (HMR).
+
 ---
 
 # 💻 Desarrollo con Dev Container (GPU)
