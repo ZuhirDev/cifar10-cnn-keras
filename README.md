@@ -60,7 +60,7 @@ Las **10 clases** que puede reconocer son:
 
 - **Dataset:** CIFAR-10 (60,000 imágenes de 32x32 píxeles).  
 - **Arquitectura:** CNN con capas de Dropout y normalización para maximizar la precisión.  
-- **Entrenamiento:** Puedes consultar el proceso detallado en: `ai-service/notebook/cifar10_cnn_keras.ipynb`.
+- **Entrenamiento:** Puedes consultar el proceso detallado en el siguiente cuaderno -> [**cifar10_cnn_keras**](./ai-service/notebooks/cifar10_cnn_keras.ipynb)
 
 ---
 
